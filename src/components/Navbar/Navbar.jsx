@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+
 import Nav from "react-bootstrap/Nav";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import Container from "react-bootstrap/Container";
@@ -10,6 +11,7 @@ const MainNavbar = () => {
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
   return (
     <Navbar bg="dark" variant="dark">
       <Container>

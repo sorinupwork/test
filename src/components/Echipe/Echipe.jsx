@@ -102,6 +102,7 @@ const Echipe = () => {
             ))}
         </tbody>
       </Table>
+
       <Pagination>{items}</Pagination>
     </>
   );

@@ -106,6 +106,7 @@ const Jucatori = () => {
             ))}
         </tbody>
       </Table>
+
       <Pagination>{items}</Pagination>
     </>
   );
