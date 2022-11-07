@@ -12,11 +12,11 @@ const Jucatori = () => {
   const [order, setOrder] = useState("ASC");
   const [search, setSearch] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage, setPostsPerPage] = useState(3);
+  const [postsPerPage, setPostsPerPage] = useState(4);
 
   useEffect(() => {
     axios
-      .get("https://recrutare.compexin.ro/api/web/jucatorioana/active")
+      .get("https://recrutare.compexin.ro/api/web/jucatorisorin")
       .then((res) => setData(res.data.DATA))
       .catch((err) => console.log(err.message));
   }, []);
@@ -73,6 +73,10 @@ const Jucatori = () => {
         </InputGroup>
       </Form>
 
+      <button>
+        <a href="/jucatori/create">Create Player</a>
+      </button>
+
       <Table striped bordered hover>
         <thead>
           <tr>
@@ -102,6 +106,10 @@ const Jucatori = () => {
                 <td>{item.NUME}</td>
                 <td>{item.PRENUME}</td>
                 <td>{item.ID_ECHIPA}</td>
+                <td>
+                  <button>EDIT</button>
+                  <button>DELETE</button>
+                </td>
               </tr>
             ))}
         </tbody>

@@ -21,7 +21,7 @@ const Echipe = () => {
 
   useEffect(() => {
     axios
-      .get("https://recrutare.compexin.ro/api/web/echipeoana/active")
+      .get("https://recrutare.compexin.ro/api/web/echipesorin")
       .then((res) => setData(res.data.DATA))
       .catch((err) => console.log(err.message));
   }, []);
@@ -68,10 +68,14 @@ const Echipe = () => {
         <InputGroup>
           <Form.Control
             onChange={(e) => setSearch(e.target.value)}
-            placeholder="Filter by first name"
+            placeholder="Filter by team name"
           />
         </InputGroup>
       </Form>
+
+      <button>
+        <a href="/echipe/create">Create Team</a>
+      </button>
 
       <Table striped bordered hover>
         <thead>
@@ -98,6 +102,10 @@ const Echipe = () => {
                 <td>{index + 1}</td>
                 <td>{item.DENUMIRE}</td>
                 <td>{item.ID_ECHIPA}</td>
+                <td>
+                  <button>EDIT</button>
+                  <button>DELETE</button>
+                </td>
               </tr>
             ))}
         </tbody>
