@@ -11,12 +11,32 @@ function App() {
   return (
     <Routes>
       <Route exact path="/" element={<MainNavbar />} />
-      <Route exact path="/echipe" element={<Echipe />} />
-      <Route exact path="/echipe/create" element={<CreateTeam />} />
-      <Route exact path="/echipe/update" element={<EditTeam />} />
-      <Route exact path="/jucatori" element={<Jucatori />} />
-      <Route exact path="/jucatori/create" element={<CreatePlayer />} />
-      <Route exact path="/jucatori/update" element={<EditPlayer />} />
+      <Route exact path="websorin.netlify.app/echipe" element={<Echipe />} />
+      <Route
+        exact
+        path="websorin.netlify.app/echipe/create"
+        element={<CreateTeam />}
+      />
+      <Route
+        exact
+        path="websorin.netlify.app/echipe/update"
+        element={<EditTeam />}
+      />
+      <Route
+        exact
+        path="websorin.netlify.app/jucatori"
+        element={<Jucatori />}
+      />
+      <Route
+        exact
+        path="websorin.netlify.app/jucatori/create"
+        element={<CreatePlayer />}
+      />
+      <Route
+        exact
+        path="websorin.netlify.app/jucatori/update"
+        element={<EditPlayer />}
+      />
     </Routes>
   );
 }
