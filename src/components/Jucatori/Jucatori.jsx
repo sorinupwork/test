@@ -13,9 +13,7 @@ const Jucatori = () => {
   const [order, setOrder] = useState("ASC");
   const [search, setSearch] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage, setPostsPerPage] = useState(0);
-
-  setPostsPerPage(4);
+  const postsPerPage = 4;
 
   useEffect(() => {
     axios
