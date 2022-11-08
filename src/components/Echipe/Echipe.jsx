@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import MainNavbar from "../Navbar/Navbar";
+import { Link } from "react-router-dom";
 
 import Table from "react-bootstrap/Table";
 import Form from "react-bootstrap/Form";
@@ -53,12 +54,42 @@ const Echipe = () => {
       <Pagination.Item
         onClick={() => setCurrentPage(number)}
         key={number}
-        active={number == currentPage}
+        active={number === currentPage}
       >
         {number}
       </Pagination.Item>
     );
   }
+
+  const setID = (id, DENUMIRE) => {
+    localStorage.setItem("ID", id);
+    localStorage.setItem("DENUMIRE", DENUMIRE);
+  };
+
+  const getData = () => {
+    axios
+      .get("https://recrutare.compexin.ro/api/web/echipesorin")
+      .then((res) => setData(res.data.DATA))
+      .catch((err) => console.log(err.message));
+  };
+
+  const onDelete = (ID_ECHIPA) => {
+    axios
+      .delete("https://recrutare.compexin.ro/api/web/echipesorin", {
+        data: {
+          ID_ECHIPA,
+        },
+      })
+      .then(() => getData());
+  };
+
+  const onRestore = (ID_ECHIPA) => {
+    axios
+      .post("https://recrutare.compexin.ro/api/web/echipesorin/restore", {
+        ID_ECHIPA,
+      })
+      .then(() => getData());
+  };
 
   return (
     <>
@@ -73,8 +104,10 @@ const Echipe = () => {
         </InputGroup>
       </Form>
 
-      <button>
-        <a href="/echipe/create">Create Team</a>
+      <button style={{ background: "green", margin: "10px 0" }}>
+        <a href="/echipe/create" style={{ color: "white" }}>
+          Create Team
+        </a>
       </button>
 
       <Table striped bordered hover>
@@ -88,6 +121,7 @@ const Echipe = () => {
               Team
             </th>
             <th>Team ID</th>
+            <th>Team Status</th>
           </tr>
         </thead>
         <tbody>
@@ -102,9 +136,26 @@ const Echipe = () => {
                 <td>{index + 1}</td>
                 <td>{item.DENUMIRE}</td>
                 <td>{item.ID_ECHIPA}</td>
+                <td>{item.STATUS}</td>
                 <td>
-                  <button>EDIT</button>
-                  <button>DELETE</button>
+                  <Link to={"/echipe/update"}>
+                    <button
+                      style={{ background: "orange" }}
+                      onClick={() => setID(item.ID_ECHIPA, item.DENUMIRE)}
+                    >
+                      EDIT
+                    </button>
+                  </Link>
+
+                  <button
+                    style={{ background: "red" }}
+                    onClick={() => onDelete(item.ID_ECHIPA)}
+                  >
+                    DELETE
+                  </button>
+                  <button onClick={() => onRestore(item.ID_ECHIPA)}>
+                    RESTORE
+                  </button>
                 </td>
               </tr>
             ))}
